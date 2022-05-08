@@ -2,6 +2,7 @@ package com.ashwin.bankmgmt_rest_api.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,6 +44,14 @@ public class CustomerController {
 		
 		return ResponseEntity.status(status).body(customer);
 	}
+	
+	@DeleteMapping(value = "/{acctID}")
+	public void deleteCustomer(@PathVariable Integer acctID)
+	{
+		customerServiceImpl.deleteCustomer(acctID);
+	}
+	
+	
 	
 	
 }

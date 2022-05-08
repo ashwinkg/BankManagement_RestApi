@@ -1,6 +1,7 @@
 package com.ashwin.bankmgmt_rest_api.services;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -42,17 +43,13 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public Customer getCustomerInfo(int acctID) {
 		// TODO Auto-generated method stub
-		System.out.println("Inside service Id" + acctID);
-		
-		
-		
-		return null;
+		return customerRepository.findById(acctID).orElse(null);
 	}
 
 	@Override
 	public void deleteCustomer(int acctID) {
 		// TODO Auto-generated method stub
-		
+		customerRepository.deleteById(acctID);
 	}
 
 }
