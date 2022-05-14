@@ -1,5 +1,6 @@
 package com.ashwin.bankmgmt_rest_api.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,7 +20,10 @@ import com.ashwin.bankmgmt_rest_api.services.CustomerServiceImpl;
 @RequestMapping("/customer")
 public class CustomerController {
 	
-	CustomerServiceImpl customerServiceImpl;
+	private CustomerServiceImpl customerServiceImpl;
+	
+	@Autowired
+	private AccountController accountController;
 	
 	public CustomerController(CustomerServiceImpl customerServiceImpl) {
 		this.customerServiceImpl = customerServiceImpl;
@@ -28,8 +32,8 @@ public class CustomerController {
 	@PostMapping
 	public void createCustomer(@RequestBody Customer customer)
 	{   
-		
 		customerServiceImpl.createCustomer(customer);
+		accountController.createAccount(0, "Active", customer);
 	}
 
 	@GetMapping(value  = "/{acctID}")

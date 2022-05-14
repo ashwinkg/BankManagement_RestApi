@@ -2,9 +2,11 @@ package com.ashwin.bankmgmt_rest_api.bootstrap;
 
 import java.time.LocalDate;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.ashwin.bankmgmt_rest_api.controller.CustomerController;
 import com.ashwin.bankmgmt_rest_api.model.Customer;
 import com.ashwin.bankmgmt_rest_api.repository.CustomerRepository;
 
@@ -14,7 +16,8 @@ import lombok.AllArgsConstructor;
 @Component
 public class Bootstrap implements CommandLineRunner {
 
-	CustomerRepository customerRepository;
+	@Autowired
+	private CustomerController customerController;
 	
 	
 	@Override
@@ -30,7 +33,7 @@ public class Bootstrap implements CommandLineRunner {
 		customer1.setPhoneNo(1234567);
 		customer1.setPassword("ashwin");
 		customer1.setDate_of_birth(LocalDate.now());
-		customerRepository.save(customer1);
+		customerController.createCustomer(customer1);
 		
 		
 		Customer customer2 = new Customer();
@@ -42,8 +45,7 @@ public class Bootstrap implements CommandLineRunner {
 		customer2.setPhoneNo(1234567);
 		customer2.setPassword("ashwin");
 		customer2.setDate_of_birth(LocalDate.now());
-		customerRepository.save(customer2);
-		
+		customerController.createCustomer(customer2);
 		
 		Customer customer3 = new Customer();
 		customer3.setName("Ashwin");
@@ -54,7 +56,7 @@ public class Bootstrap implements CommandLineRunner {
 		customer3.setPhoneNo(1234567);
 		customer3.setPassword("ashwin");
 		customer3.setDate_of_birth(LocalDate.now());
-		customerRepository.save(customer3);
+		customerController.createCustomer(customer3);
 		
 		
 		Customer customer4 = new Customer();
@@ -66,7 +68,7 @@ public class Bootstrap implements CommandLineRunner {
 		customer4.setPhoneNo(1234567);
 		customer4.setPassword("ashwin");
 		customer4.setDate_of_birth(LocalDate.now());
-		customerRepository.save(customer4);
+		customerController.createCustomer(customer4);
 		
 	}
 
