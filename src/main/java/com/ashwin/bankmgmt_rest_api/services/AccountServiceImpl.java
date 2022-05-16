@@ -37,7 +37,7 @@ public class AccountServiceImpl implements AccountService{
 	@Override
 	public int getBalance(int acctID) {
 		// TODO Auto-generated method stub
-		return 0;
+		return accountRepository.findBalanceByAcctID(acctID);
 	}
 
 	@Override
