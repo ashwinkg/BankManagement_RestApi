@@ -1,7 +1,10 @@
 package com.ashwin.bankmgmt_rest_api.services;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.IllegalTransactionStateException;
 
 import com.ashwin.bankmgmt_rest_api.model.Accounts;
 import com.ashwin.bankmgmt_rest_api.repository.AccountRepository;
@@ -43,13 +46,17 @@ public class AccountServiceImpl implements AccountService{
 	@Override
 	public void depositAmount(int acctID, int amount) {
 		// TODO Auto-generated method stub
-		
+		int balance = accountRepository.findBalanceByAcctID(acctID);
+		int new_balance = balance + amount;
+		accountRepository.updateBalanceByAcctID(acctID, new_balance);
 	}
 
 	@Override
 	public void withdrawAmount(int acctID, int amount) {
 		// TODO Auto-generated method stub
-		
+		int balance = accountRepository.findBalanceByAcctID(acctID);
+		int new_balance = balance - amount;
+		accountRepository.updateBalanceByAcctID(acctID, new_balance);
 	}
 
 	@Override

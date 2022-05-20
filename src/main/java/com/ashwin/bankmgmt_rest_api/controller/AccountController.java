@@ -3,6 +3,7 @@ package com.ashwin.bankmgmt_rest_api.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ashwin.bankmgmt_rest_api.model.Accounts;
@@ -30,7 +31,17 @@ public class AccountController {
 		return accountServiceImpl.getBalance(acctID);
 	}
 	
+	@PutMapping(path = "/account/{acctID}/deposit/{amount}")
+	public void depositAmount(@PathVariable Integer acctID, @PathVariable Integer amount)
+	{
+		accountServiceImpl.depositAmount(acctID, amount);
+	}
 	
+	@PutMapping(path = "/account/{acctID}/withdraw/{amount}")
+	public void withdrawAmount(@PathVariable Integer acctID, @PathVariable Integer amount)
+	{
+		accountServiceImpl.withdrawAmount(acctID, amount);
+	}
 	
 	
 	
