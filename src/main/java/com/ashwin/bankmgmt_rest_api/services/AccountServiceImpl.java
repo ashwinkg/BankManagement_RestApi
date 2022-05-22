@@ -34,7 +34,7 @@ public class AccountServiceImpl implements AccountService{
 	@Override
 	public void deleteAccount(int acctID) {
 		// TODO Auto-generated method stub
-		
+		accountRepository.deleteById(acctID);
 	}
 
 	@Override
@@ -62,6 +62,11 @@ public class AccountServiceImpl implements AccountService{
 	@Override
 	public void transferAmount(int acctID, int destAcctID, int amount) {
 		// TODO Auto-generated method stub
+		int srcAccountBalance = accountRepository.findBalanceByAcctID(acctID);
+		int destAccountBalance = accountRepository.findBalanceByAcctID(destAcctID);
+		
+		accountRepository.updateBalanceByAcctID(acctID, srcAccountBalance - amount);
+		accountRepository.updateBalanceByAcctID(destAcctID, destAccountBalance + amount);
 		
 	}
 

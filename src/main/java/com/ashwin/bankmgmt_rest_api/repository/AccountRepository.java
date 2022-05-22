@@ -19,4 +19,5 @@ public interface AccountRepository extends CrudRepository<Accounts, Integer>,Jpa
 	@Query("update Accounts set balance=?2 where acctID= ?1")
 	public void updateBalanceByAcctID(int acctID, int balance);
 	
+
 }
