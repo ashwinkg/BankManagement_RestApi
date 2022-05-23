@@ -28,7 +28,7 @@ public class AccountServiceImpl implements AccountService{
 	@Override
 	public Accounts getAccountInfo(int acctID) {
 		// TODO Auto-generated method stub
-		return null;
+		return accountRepository.findById(acctID).orElse(null);
 	}
 
 	@Override
